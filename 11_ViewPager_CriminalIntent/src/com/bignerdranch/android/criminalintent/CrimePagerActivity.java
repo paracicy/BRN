@@ -42,6 +42,10 @@ public class CrimePagerActivity extends FragmentActivity {
         for (int i = 0; i < crimes.size(); i++) {
             if (crimes.get(i).getId().equals(crimeId)) {
                 mViewPager.setCurrentItem(i);
+                
+                //set first title
+                setTitle(crimes.get(i).getTitle());
+                
                 break;
             } 
         }
@@ -51,10 +55,10 @@ public class CrimePagerActivity extends FragmentActivity {
         	public void onPageScrollStateChanged(int state) { }
         	public void onPageScrolled(int pos, float posOffset, int posOffsetPixels) {}
         	public void onPageSelected(int pos) {
-        			Crime crime = crimes.get(pos);
-        			if (crime.getTitle() != null) {
-        				setTitle(crime.getTitle());
-        			}
+        		Crime crime = crimes.get(pos);
+        		if (crime.getTitle() != null) {
+        			setTitle(crime.getTitle());
+        		}
         	}
         });
     }
