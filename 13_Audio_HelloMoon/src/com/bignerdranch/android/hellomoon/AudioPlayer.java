@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 public class AudioPlayer {
 
     private MediaPlayer mPlayer;
+    public boolean isPausing = false;
     
     public void stop() {
         if (mPlayer != null) {
@@ -13,9 +14,22 @@ public class AudioPlayer {
             mPlayer = null;
         }
     }
+    
+    public void pause() {
+        if (mPlayer != null) {
+            mPlayer.pause();
+            isPausing = true;
+        }
+    }
 
     public void play(Context c) {
         
+    	if(isPausing && mPlayer != null) {
+    		mPlayer.start();
+    		isPausing = false;
+    		return;
+    	}
+    	
         stop();
 
         mPlayer = MediaPlayer.create(c, R.raw.one_small_step);

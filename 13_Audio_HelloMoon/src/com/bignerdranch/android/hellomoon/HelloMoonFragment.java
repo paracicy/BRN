@@ -12,10 +12,15 @@ public class HelloMoonFragment extends Fragment {
     
     private Button mPlayButton;
     private Button mStopButton;
+    private Button mPauseButton;
       
     void updateButtons() {
         boolean isEnabled = !mPlayer.isPlaying();
         mPlayButton.setEnabled(isEnabled);
+        
+        if(mPlayer.isPausing) {
+        	mPlayButton.setEnabled(true);
+        }
     }
     
     @Override
@@ -30,7 +35,8 @@ public class HelloMoonFragment extends Fragment {
 
         mPlayButton = (Button)v.findViewById(R.id.hellomoon_playButton);
         mStopButton = (Button)v.findViewById(R.id.hellomoon_stopButton);
-                
+        mPauseButton = (Button)v.findViewById(R.id.hellomoon_pauseButton);
+        
         mPlayButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 mPlayer.play(getActivity());
@@ -41,6 +47,13 @@ public class HelloMoonFragment extends Fragment {
         mStopButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {                
                 mPlayer.stop();
+                updateButtons();
+            }
+        });
+        
+        mPauseButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {                
+                mPlayer.pause();
                 updateButtons();
             }
         });
