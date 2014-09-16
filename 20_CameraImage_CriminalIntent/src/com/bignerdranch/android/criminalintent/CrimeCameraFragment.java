@@ -37,6 +37,7 @@ public class CrimeCameraFragment extends Fragment {
             mProgressContainer.setVisibility(View.VISIBLE);
         }
     };
+    
     private Camera.PictureCallback mJpegCallBack = new Camera.PictureCallback() {
         public void onPictureTaken(byte[] data, Camera camera) {
             // create a filename
